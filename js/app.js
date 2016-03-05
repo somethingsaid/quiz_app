@@ -6,9 +6,9 @@ var numberCorrect = 0;
 var currentQuestion = 0;
 
 /*-------------------------------*/
-/*--- Bouldering quiz object ---*/
+/*--- Quiz Array ---*/
 /*------------------------------*/
-var boulderQuestions = [
+var quizQuestions = [
 {
     questionNum: 0,
     questionText: "What does FFA stand for?",
@@ -53,9 +53,11 @@ function firstQuestion() {
     $("#question_wrapper").show();
     $("#final_wrapper").hide();
     $("#bottom").hide();
-    $(".question").text("Question #" + (currentQuestion + 1) + ": " + boulderQuestions[currentQuestion].questionText);
-    for (var i = 0; i < 4; i++) {
-        $("#"+ (i + 1)).text(boulderQuestions[currentQuestion].choices[i]);
+    $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
+    $("#answer_holder").empty();
+    for (var i = 0; i < quizQuestions[currentQuestion].choices.length; i++) {
+        $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
+        $("#"+ (i + 1)).text(quizQuestions[currentQuestion].choices[i]);
     }
     $("#submit").prop('disabled', false);
     $("#next").prop('disabled', true);
@@ -65,15 +67,15 @@ function firstQuestion() {
 function checkAnswer() {
     var userAnswer = $("input[type='radio']:checked").val();
     var feedback = '';
-    if (userAnswer == boulderQuestions[currentQuestion].correct) {
+    if (userAnswer == quizQuestions[currentQuestion].correct) {
         numberCorrect += 1;
         feedback = 'Correct! ';
-        $("#last_question_fact").text(feedback + boulderQuestions[currentQuestion].fact);
+        $("#last_question_fact").text(feedback + quizQuestions[currentQuestion].fact);
         console.log("Correct!  Your current score is: " + numberCorrect);
     }
     else {
         feedback = 'Incorrect! ';
-        $("#last_question_fact").text(feedback + boulderQuestions[currentQuestion].fact);
+        $("#last_question_fact").text(feedback + quizQuestions[currentQuestion].fact);
         console.log("Wrong!  Your current score is: " + numberCorrect);
     }
     $(".current_score").text(numberCorrect);
@@ -85,9 +87,11 @@ function nextQuestion() {
     currentQuestion += 1;
     $("#submit").prop('disabled', false);
     $("#next").prop('disabled', true);
-    $(".question").text("Question #" + (currentQuestion + 1) + ": " + boulderQuestions[currentQuestion].questionText);
-    for (var i = 0; i < 4; i++) {
-        $("#"+ (i + 1)).text(boulderQuestions[currentQuestion].choices[i]);
+    $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
+    $("#answer_holder").empty();
+    for (var i = 0; i < quizQuestions[currentQuestion].choices.length; i++) {
+        $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
+        $("#"+ (i + 1)).text(quizQuestions[currentQuestion].choices[i]);
     }
 }
 // End game when currentQuestion goes to 5
@@ -134,7 +138,7 @@ $("#submit").click(function() {
 });
 
 $("#next").click(function() {
-    if (currentQuestion != 4) {
+    if (currentQuestion != (quizQuestions.length - 1)) {
         nextQuestion();
     }
     else {
