@@ -1,51 +1,154 @@
 $(document).ready(function() {
-
+/*--------------------------*/
 /*--- Global variables ---*/ 
+/*--------------------------*/
 var numberCorrect = 0;
 var currentQuestion = 0;
 
+/*-------------------------------*/
 /*--- Bouldering quiz object ---*/
+/*------------------------------*/
 var boulderQuestions = [
 {
     questionNum: 0,
     questionText: "What does FFA stand for?",
     choices: ["Fastest Free Ascent", "First Free Ascent", "First Foreign Ascent", "Fastest Foreign Ascent"],
     correct: 1,
-    fact: "FFA could also stand for First Female Ascent"
+    fact: "FFA could stand for First Free Ascent or First Female Ascent"
 },
 {
     questionNum: 1,
     questionText: "ABO means... ",
     choices: ["Always Be Outdoors", "Assisted Brake Option", "Abominable", "Analysis of Belay Outcome"],
     correct: 2,
-    fact: "Abominable is the top rating on the French Alpine grading scale"
+    fact: "Abominable (ABO) is the top rating on the French Alpine grading scale"
 },
 {
 	questionNum: 2,
     questionText: "A favourite retailer of outdoor recreation gear in Canada, MEC stands for",
     choices: ["Mountain Equipment Co-op", "Mountain Equipment Co.", "Mount Edmonton Clothiers", "Mecca Excursion Center"],
     correct: 0,
-    fact: "MEC is notable for its commitment to environmental protection"
+    fact: "Mountain Equipment Co-op  (MEC) is notable for its commitment to environmental protection"
 },
 {
 	questionNum: 3,
     questionText: "The common \"V\" scale for grading the difficulty of a bouldering problem is als called",
     choices: ["Vertical Scale", "Biller's System", "Vermin's Grade", "Hueco Scale"],
     correct: 3,
-    fact: "Created by John \"Vermin\" Sherman in the 1990s, this is the most widely used system in North America"
+    fact: "Created by John \"Vermin\" Sherman in the 1990s, the \"V\" scale or Hueco Scale is the most widely used system in North America"
 },
 {
 	questionNum: 4,
     questionText: "Beta refers to",
-    choices: ["a test route when designing competitions", "the second person to ascent", "plan B", "advice on how to complete a route"],
+    choices: ["a test route when designing competitions", "the second person to ascent", "plan B", "advice for completion (solution) of a route"],
     correct: 3,
-    fact: "There can be multiple betas.  Some believe that providing betas 'taints' an ascent."
-}]
+    fact: "There can be multiple betas or solutions to a problem.  Some believe that providing betas 'taints' an ascent."
+}];
 
+/*--------------------------*/
 /*--- Declare functions ---*/
+/*--------------------------*/
+// Show first question
+function firstQuestion() {
+    $("#question_wrapper").show();
+    $("#final_wrapper").hide();
+    $("#bottom").hide();
+    $(".question").text("Question #" + (currentQuestion + 1) + ": " + boulderQuestions[currentQuestion].questionText);
+    for (var i = 0; i < 4; i++) {
+        $("#"+ (i + 1)).text(boulderQuestions[currentQuestion].choices[i]);
+    }
+    $("#submit").prop('disabled', false);
+    $("#next").prop('disabled', true);
+}
 
+// Compare choice with correct answer and update numCorrect
+function checkAnswer() {
+    var userAnswer = $("input[type='radio']:checked").val();
+    var feedback = '';
+    if (userAnswer == boulderQuestions[currentQuestion].correct) {
+        numberCorrect += 1;
+        feedback = 'Correct! ';
+        $("#last_question_fact").text(feedback + boulderQuestions[currentQuestion].fact);
+        console.log("Correct!  Your current score is: " + numberCorrect);
+    }
+    else {
+        feedback = 'Incorrect! ';
+        $("#last_question_fact").text(feedback + boulderQuestions[currentQuestion].fact);
+        console.log("Wrong!  Your current score is: " + numberCorrect);
+    }
+    $(".current_score").text(numberCorrect);
+
+}
+
+// Show next question
+function nextQuestion() {
+    currentQuestion += 1;
+    $("#submit").prop('disabled', false);
+    $("#next").prop('disabled', true);
+    $(".question").text("Question #" + (currentQuestion + 1) + ": " + boulderQuestions[currentQuestion].questionText);
+    for (var i = 0; i < 4; i++) {
+        $("#"+ (i + 1)).text(boulderQuestions[currentQuestion].choices[i]);
+    }
+}
+// End game when currentQuestion goes to 5
+// Look into doing this with a timer?
+
+/*------------------------*/
 /*--- Event Listeners ---*/
+/*-----------------------*/
+$("#final_wrapper").hide();
+$("#bottom").hide();
 
+// Show first question
+firstQuestion();
 
+// Submit answer should:
+    // 1. Compare choice with correct answer
+    // 2. Update score
+    // 3. Display fact
+    // 4. Display next question
 
+$("#submit").click(function() {
+    var answerSelected = false;
+    var i = 1;
+    while ((answerSelected == false) && (i < 5)) {
+        if ($("#opt" + i).is(':checked')) {
+            answerSelected = true;
+            console.log("You selected answer: " + i);
+        }
+        i += 1;
+    }
+
+    if (answerSelected == true) {
+        checkAnswer();
+        //nextQuestion();
+        $("#bottom").show();
+        $("#submit").prop('disabled', true);
+        $("#next").prop('disabled', false);
+    }
+    else {
+        $("#last_question_fact").text("You must pick an answer before submitting");
+        $("#bottom").show();
+    }
+    
+});
+
+$("#next").click(function() {
+    if (currentQuestion != 4) {
+        nextQuestion();
+    }
+    else {
+        $("#question_wrapper").hide();
+        $("#final_score").text(numberCorrect);
+        $("#final_wrapper").show();
+        $("#bottom").hide();
+    }
+});
+
+$("#restart").click(function() {
+    numberCorrect = 0;
+    currentQuestion = 0;
+    firstQuestion();
+});
+// EOF
 });

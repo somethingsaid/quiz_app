@@ -1,0 +1,14 @@
+html {
+	background-image: url("../images/climber.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+body {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+}
+
+input[type=button] {
+	color: #000;
+}
