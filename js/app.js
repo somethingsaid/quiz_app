@@ -43,6 +43,13 @@ var quizQuestions = [
     choices: ["a test route when designing competitions", "the second person to ascent", "plan B", "advice for completion (solution) of a route"],
     correct: 3,
     fact: "There can be multiple betas or solutions to a problem.  Some believe that providing betas 'taints' an ascent."
+},
+{
+    questionNum: 5,
+    questionText: "Filler",
+    choices: ["A", "or B"],
+    correct: 0,
+    fact: "Just for debugging"
 }];
 
 /*--------------------------*/
@@ -65,7 +72,7 @@ function firstQuestion() {
 
 // Compare choice with correct answer and update numCorrect
 function checkAnswer() {
-    var userAnswer = $("input[type='radio']:checked").val();
+    var userAnswer = ($("input[type='radio']:checked").val() - 1);
     var feedback = '';
     if (userAnswer == quizQuestions[currentQuestion].correct) {
         numberCorrect += 1;
@@ -93,6 +100,9 @@ function nextQuestion() {
         $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
         $("#"+ (i + 1)).text(quizQuestions[currentQuestion].choices[i]);
     }
+    if (currentQuestion == (quizQuestions.length - 1)) {
+        $("#next").val("Finish quiz");
+    }
 }
 // End game when currentQuestion goes to 5
 // Look into doing this with a timer?
@@ -102,6 +112,7 @@ function nextQuestion() {
 /*-----------------------*/
 $("#final_wrapper").hide();
 $("#bottom").hide();
+$(".max_score").text("out of " + quizQuestions.length);
 
 // Show first question
 firstQuestion();
