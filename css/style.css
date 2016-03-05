@@ -1,14 +1,45 @@
+/*--- Global declarations ---*/
+* {
+	border: 1px solid red;
+}
+
 html {
 	background-image: url("../images/climber.jpg");
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
 
-body {
-	background: rgba(0, 0, 0, 0.5);
+body, #bottom {
 	color: #fff;
+	width: 100%;
+	margin: auto;
+	text-align: center;
 }
 
+/*--- Specific declarations ---*/
 input[type=button] {
 	color: #000;
+}
+
+h1 {
+	width: 100%;
+	padding: 10rem 0 5rem 0;
+}
+
+div {
+	width: 70%;
+	margin: auto;
+}
+
+#question_wrapper, #final_wrapper {
+	text-align: center;
+}
+
+#question_wrapper, #final_wrapper {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+#answer_holder {
+	width: 50%;
+	text-align: justify;
 }
