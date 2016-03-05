@@ -43,13 +43,6 @@ var quizQuestions = [
     choices: ["a test route when designing competitions", "the second person to ascent", "plan B", "advice for completion (solution) of a route"],
     correct: 3,
     fact: "There can be multiple betas or solutions to a problem.  Some believe that providing betas 'taints' an ascent."
-},
-{
-    questionNum: 5,
-    questionText: "Filler",
-    choices: ["A", "or B"],
-    correct: 0,
-    fact: "Just for debugging"
 }];
 
 /*--------------------------*/
