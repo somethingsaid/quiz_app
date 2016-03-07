@@ -1,7 +1,8 @@
 /*--- Global declarations ---*/
-* {
+/* * {
 	border: 1px solid red;
 }
+*/
 
 html {
 	background-image: url("../images/climber.jpg");
@@ -17,13 +18,13 @@ body, #bottom {
 }
 
 /*--- Specific declarations ---*/
-input[type=button] {
-	color: #000;
-}
-
 h1 {
 	width: 100%;
-	padding: 10rem 0 5rem 0;
+	padding: 10rem 0 2rem 0;
+	font-size: 3rem;
+	font-family: 'Raleway',sans-serif;
+	text-transform: uppercase;
+	font-weight: 800;
 }
 
 div {
@@ -31,8 +32,10 @@ div {
 	margin: auto;
 }
 
-#question_wrapper, #final_wrapper {
+#question_wrapper, #final_wrapper, #bottom {
 	text-align: center;
+	font-family: 'Lucida Sans', Arial, sans-serif;
+	font-weight: 500;
 }
 
 #question_wrapper, #final_wrapper {
@@ -40,6 +43,27 @@ div {
 }
 
 #answer_holder {
-	width: 50%;
+	width: 40%;
 	text-align: justify;
+	font-size: 1.3rem;
+}
+
+
+#final_score {
+	font-size: 10rem;
+	margin: 0;
+	padding-top: 3rem;
+}
+
+#restart {
+	color: #000000;
+}
+
+.question {
+	font-size: 2rem;
+}
+
+#answer_holder {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }

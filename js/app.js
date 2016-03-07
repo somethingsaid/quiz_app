@@ -51,6 +51,7 @@ var quizQuestions = [
 // Show first question
 function firstQuestion() {
     $("#question_wrapper").show();
+    $("#next").val("Next Question");
     $("#final_wrapper").hide();
     $("#bottom").hide();
     $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
@@ -59,8 +60,8 @@ function firstQuestion() {
         $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
         $("#"+ (i + 1)).text(quizQuestions[currentQuestion].choices[i]);
     }
-    $("#submit").prop('disabled', false);
-    $("#next").prop('disabled', true);
+    $("#submit").prop('disabled', false).css('color', '#000000');
+    $("#next").prop('disabled', true).css('color', '#dddddd');
 }
 
 // Compare choice with correct answer and update numCorrect
@@ -85,8 +86,8 @@ function checkAnswer() {
 // Show next question
 function nextQuestion() {
     currentQuestion += 1;
-    $("#submit").prop('disabled', false);
-    $("#next").prop('disabled', true);
+    $("#submit").prop('disabled', false).css('color', '#000000');
+    $("#next").prop('disabled', true).css('color', '#dddddd');
     $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
     $("#answer_holder").empty();
     for (var i = 0; i < quizQuestions[currentQuestion].choices.length; i++) {
@@ -131,8 +132,8 @@ $("#submit").click(function() {
         checkAnswer();
         //nextQuestion();
         $("#bottom").show();
-        $("#submit").prop('disabled', true);
-        $("#next").prop('disabled', false);
+        $("#submit").prop('disabled', true).css('color', '#dddddd');
+        $("#next").prop('disabled', false).css('color', '#000000');
     }
     else {
         $("#last_question_fact").text("You must pick an answer before submitting");
