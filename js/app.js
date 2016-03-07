@@ -3,7 +3,11 @@ $(document).ready(function() {
 /*--- Global variables ---*/ 
 /*--------------------------*/
 var numberCorrect = 0;
-var currentQuestion = 0;
+
+// For displaying questions in random order
+var currentQuestion = 0; // to be overwritten by randNum() later
+var askedList = []; // questions already asked will be appended here
+var absoluteQuestion = 1;
 
 /*-------------------------------*/
 /*--- Quiz Array ---*/
@@ -48,13 +52,31 @@ var quizQuestions = [
 /*--------------------------*/
 /*--- Declare functions ---*/
 /*--------------------------*/
+// Generate random question number
+function randNum() {
+    // Continue generating random number if generated number already is askedList
+    while (($.inArray(currentQuestion, askedList) != -1) && (askedList.length < quizQuestions.length)) {
+        console.log("Random question number: " + currentQuestion + " is already asked: " + askedList);
+        //Max is last index of quiz, min is 0
+        currentQuestion = Math.floor(Math.random() * ((quizQuestions.length - 1)- 0 + 1)) + 0; 
+    }
+    if (askedList.length < quizQuestions.length) {
+        console.log("New question number generated: " + currentQuestion);
+        // Append new random number to askedList
+        askedList.push(currentQuestion);
+    }
+    else {
+        console.log("All quiz questions have been asked.");
+    }
+}
+
 // Show first question
 function firstQuestion() {
     $("#question_wrapper").show();
     $("#next").val("Next Question");
     $("#final_wrapper").hide();
     $("#bottom").hide();
-    $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
+    $(".question").text("Question #" + absoluteQuestion + ": " + quizQuestions[currentQuestion].questionText);
     $("#answer_holder").empty();
     for (var i = 0; i < quizQuestions[currentQuestion].choices.length; i++) {
         $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
