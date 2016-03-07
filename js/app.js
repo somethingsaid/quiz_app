@@ -36,7 +36,7 @@ var quizQuestions = [
 },
 {
 	questionNum: 3,
-    questionText: "The common \"V\" scale for grading the difficulty of a bouldering problem is als called",
+    questionText: "The common \"V\" scale for grading the difficulty of a bouldering problem is also called",
     choices: ["Vertical Scale", "Biller's System", "Vermin's Grade", "Hueco Scale"],
     correct: 3,
     fact: "Created by John \"Vermin\" Sherman in the 1990s, the \"V\" scale or Hueco Scale is the most widely used system in North America"
