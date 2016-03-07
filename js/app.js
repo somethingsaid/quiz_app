@@ -72,6 +72,8 @@ function randNum() {
 
 // Show first question
 function firstQuestion() {
+    currentQuestion = Math.floor(Math.random() * ((quizQuestions.length - 1)- 0 + 1)) + 0;
+    askedList.push(currentQuestion);
     $("#question_wrapper").show();
     $("#next").val("Next Question");
     $("#final_wrapper").hide();
@@ -107,16 +109,17 @@ function checkAnswer() {
 
 // Show next question
 function nextQuestion() {
-    currentQuestion += 1;
+    randNum();
+    absoluteQuestion += 1;
     $("#submit").prop('disabled', false).css('color', '#000000');
     $("#next").prop('disabled', true).css('color', '#dddddd');
-    $(".question").text("Question #" + (currentQuestion + 1) + ": " + quizQuestions[currentQuestion].questionText);
+    $(".question").text("Question #" + absoluteQuestion + ": " + quizQuestions[currentQuestion].questionText);
     $("#answer_holder").empty();
     for (var i = 0; i < quizQuestions[currentQuestion].choices.length; i++) {
         $("#answer_holder").append("<input type=\'radio\' name=\'option\' class=\'option\' id=\'opt" + (i + 1) + "\' value=\'" + (i + 1) + "\'><span class=\'answer\' id=\'" + (i + 1) + "\'></span><br>");
         $("#"+ (i + 1)).text(quizQuestions[currentQuestion].choices[i]);
     }
-    if (currentQuestion == (quizQuestions.length - 1)) {
+    if (absoluteQuestion == quizQuestions.length) {
         $("#next").val("Finish quiz");
     }
 }
@@ -165,7 +168,7 @@ $("#submit").click(function() {
 });
 
 $("#next").click(function() {
-    if (currentQuestion != (quizQuestions.length - 1)) {
+    if (absoluteQuestion != quizQuestions.length) {
         nextQuestion();
     }
     else {
@@ -178,7 +181,9 @@ $("#next").click(function() {
 
 $("#restart").click(function() {
     numberCorrect = 0;
-    currentQuestion = 0;
+    currentQuestion = Math.floor(Math.random() * ((quizQuestions.length - 1)- 0 + 1)) + 0;
+    askedList = [];
+    absoluteQuestion = 1;
     firstQuestion();
 });
 // EOF
