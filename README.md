@@ -1,5 +1,8 @@
 Quiz App
 ======================================================
-Working simple version.
-All scripts are made for a quiz of unlimited length.
-* Each question must have 4 choices (to be improved upon in later update).
+Working version.
+All scripts are made for a quiz of unlimited length, can have different number of choices.
+
+Next update:
+------------
+deliver questions in a random order for each playthrough
