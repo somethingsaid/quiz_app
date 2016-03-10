@@ -15,38 +15,38 @@ var absoluteQuestion = 1;
 var quizQuestions = [
 {
     questionNum: 0,
-    questionText: "What does FFA stand for?",
-    choices: ["Fastest Free Ascent", "First Free Ascent", "First Foreign Ascent", "Fastest Foreign Ascent"],
-    correct: 1,
-    fact: "FFA could stand for First Free Ascent or First Female Ascent"
+    questionText: "What is Lionel Messi's middle name?",
+    choices: ["Rosario", "Rodrigo", "Andres", "Cristiano"],
+    correct: 2,
+    fact: "His middle name is in fact, Andres"
 },
 {
     questionNum: 1,
-    questionText: "ABO means... ",
-    choices: ["Always Be Outdoors", "Assisted Brake Option", "Abominable", "Analysis of Belay Outcome"],
-    correct: 2,
-    fact: "Abominable (ABO) is the top rating on the French Alpine grading scale"
+    questionText: "What Argentinian club was Messi in before moving to Barcelona?",
+    choices: ["River Plate", "Newell's Old Boys", "Boca Juniors", "Independiente"],
+    correct: 1,
+    fact: "He was playing for the Old Boys"
 },
 {
 	questionNum: 2,
-    questionText: "A favourite retailer of outdoor recreation gear in Canada, MEC stands for",
-    choices: ["Mountain Equipment Co-op", "Mountain Equipment Co.", "Mount Edmonton Clothiers", "Mecca Excursion Center"],
+    questionText: "What did FCB offer Messi that finally convinced his move?",
+    choices: ["Growth hormone treatment", "a new house for his family", "an Aston Martin", "player-coach status"],
     correct: 0,
-    fact: "Mountain Equipment Co-op  (MEC) is notable for its commitment to environmental protection"
+    fact: "Messi required expensive growth hormone treatment, which FCB happily paid for."
 },
 {
 	questionNum: 3,
-    questionText: "The common \"V\" scale for grading the difficulty of a bouldering problem is also called",
-    choices: ["Vertical Scale", "Biller's System", "Vermin's Grade", "Hueco Scale"],
+    questionText: "How many goals did Messi score during the treble winning 2008-2009 season for Barcelona?",
+    choices: ["30", "34", "36", "38"],
     correct: 3,
-    fact: "Created by John \"Vermin\" Sherman in the 1990s, the \"V\" scale or Hueco Scale is the most widely used system in North America"
+    fact: "The maestro scored a stunning 38 goals!"
 },
 {
 	questionNum: 4,
-    questionText: "Beta refers to",
-    choices: ["a test route when designing competitions", "the second person to ascent", "plan B", "advice for completion (solution) of a route"],
-    correct: 3,
-    fact: "There can be multiple betas or solutions to a problem.  Some believe that providing betas 'taints' an ascent."
+    questionText: "Maradona has criticized Messi for being...",
+    choices: ["too selfish", "too small", "a poor leader", "weak in the air"],
+    correct: 0,
+    fact: "He said Messi was too weak, but that's clearly not the case with the MSN."
 }];
 
 /*--------------------------*/
